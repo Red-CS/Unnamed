@@ -16,8 +16,8 @@ import com.unnamed.game.util.Vector2D;
  */
 public abstract class Entity {
 
-    private final int RIGHT = 1;
-    private final int LEFT = 0;
+    private final int RIGHT = 0;
+    private final int LEFT = 1;
     private final int UP = 2;
     private final int DOWN = 3;
     protected int currentAnimation;
@@ -39,9 +39,9 @@ public abstract class Entity {
     protected float dx;
     protected float dy;
 
-    protected float maxSpeed;
-    protected float acc;
-    protected float deacc;
+    protected float maxSpeed = 3f;
+    protected float acc = 2f;
+    protected float deacc = 0.1f;
 
     protected AABB hitBounds;
     protected AABB bounds;
@@ -58,7 +58,8 @@ public abstract class Entity {
             size, size);
         animationDelay = 5;
         ani = new Animation();
-        setAnimation(RIGHT, sprite.getSpriteArray(LEFT), 10);
+
+        setAnimation(LEFT, sprite.getSpriteArray(LEFT), 10);
     }
 
 
@@ -112,20 +113,26 @@ public abstract class Entity {
     public void animate() {
         if (up) {
             if (currentAnimation != UP || ani.getDelay() == -1) {
+// currentAnimation = UP;
                 setAnimation(UP, sprite.getSpriteArray(UP), 5);
+// setAnimation(RIGHT, sprite.getSpriteArray(RIGHT), 5);
             }
         }
         else if (down) {
+// currentAnimation = DOWN;
             if (currentAnimation != DOWN || ani.getDelay() == -1) {
-                setAnimation(DOWN, sprite.getSpriteArray(DOWN), 5);
+// setAnimation(DOWN, sprite.getSpriteArray(DOWN), 5);
+                setAnimation(LEFT, sprite.getSpriteArray(LEFT), 5);
             }
         }
         else if (right) {
+// currentAnimation = RIGHT;
             if (currentAnimation != RIGHT || ani.getDelay() == -1) {
                 setAnimation(RIGHT, sprite.getSpriteArray(RIGHT), 5);
             }
         }
         else if (left) {
+// currentAnimation = LEFT;
             if (currentAnimation != LEFT || ani.getDelay() == -1) {
                 setAnimation(LEFT, sprite.getSpriteArray(LEFT), 5);
             }

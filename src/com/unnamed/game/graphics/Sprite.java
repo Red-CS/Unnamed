@@ -16,8 +16,13 @@ public class Sprite {
     private BufferedImage SPRITESHEET = null;
     private BufferedImage[][] spriteArray;
     private final int TILE_SIZE = 32;
+
+    /** Width of the Sprite's canvas / tile */
     public int width;
+
+    /** Height of the Sprite's canvas / tile */
     public int height;
+
     private int wSprite;
     private int hSprite;
 
@@ -32,8 +37,17 @@ public class Sprite {
         System.out.println("Loading: " + file + "...");
         SPRITESHEET = loadSprite(file);
 
+        /*
+         * FIXME: This sets the dimensions of the spritesheet
+         * (how many sprites in each column and each row)
+         * to wSprite and hSprite.
+         * 
+         * width and height hold the canvas dimensions
+         */
         wSprite = SPRITESHEET.getWidth() / width;
         hSprite = SPRITESHEET.getHeight() / height;
+        System.out.println(wSprite + ", " + hSprite);
+        System.out.println(width + ", " + height);
         loadSpriteArray();
     }
 
@@ -53,6 +67,8 @@ public class Sprite {
 
         wSprite = SPRITESHEET.getWidth() / width;
         hSprite = SPRITESHEET.getHeight() / height;
+        System.out.println(wSprite + ", " + hSprite);
+        System.out.println(width + ", " + height);
         loadSpriteArray();
     }
 
@@ -98,12 +114,15 @@ public class Sprite {
 
 
     /**
-     * 
+     * Creates an array-based sprite sheet.
+     * Assumes a vertical - based Spritesheet
      */
     public void loadSpriteArray() {
         spriteArray = new BufferedImage[wSprite][hSprite];
 
+        // Traverse columns of spritesheet
         for (int x = 0; x < wSprite; x++) {
+            // Traverse rows of spritesheet
             for (int y = 0; y < hSprite; y++) {
                 spriteArray[x][y] = getSprite(x, y);
             }
@@ -112,24 +131,40 @@ public class Sprite {
 
 
     /**
-     * @return
+     * Returns the Spritesheet as a Buffered Image
+     * @return The Spritesheet as a Buffered Image
      */
     public BufferedImage getSpriteSheet() {
         return SPRITESHEET;
     }
 
 
+    /**
+     * Gets the sprite at the specified location on the Spritesheet
+     * @param x The X coordinate of the sprite
+     * @param y The y coordinate of the sprite
+     * @return The Sprite at the specified location on the Spritesheet
+     */
     public BufferedImage getSprite(int x, int y) {
         return SPRITESHEET.getSubimage(x * width, y * height, width, height);
     }
 
 
+    /**
+     * Gets a column of the Spritesheet
+     * @param i Column of the Spritesheet
+     * @return the Column of the Spritesheet at {@code i}
+     */
     public BufferedImage[] getSpriteArray(int i) {
         return spriteArray[i];
     }
 
 
-    public BufferedImage[][] getSpriteArray2D(int i) {
+    /**
+     * Returns the Spritesheet as a 2D array
+     * @return the Spritesheet as a 2D array
+     */
+    public BufferedImage[][] getSpriteArray2D() {
         return spriteArray;
     }
 

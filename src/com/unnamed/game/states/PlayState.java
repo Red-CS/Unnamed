@@ -21,8 +21,10 @@ public class PlayState extends GameState {
     public PlayState(GameStateManager gsm) {
         super(gsm);
         font = new Font("font/ZeldaFont.png", 16, 16);
-        player = new Player(new Sprite("font/B_witch_run3.png"), new Vector2D(
-            300, 300), 128);
+        player = new Player(new Sprite("entity/B_witch_run4.png", 32, 48),
+            new Vector2D(300, 300), 128);
+// player = new Player(new Sprite("font/spritesheet2.png", 32, 48),
+// new Vector2D(300, 300), 128);
     }
 
 
@@ -52,8 +54,8 @@ public class PlayState extends GameState {
     @Override
     public void render(Graphics2D g) {
 
-        Sprite.drawArray(g, font, "a your mom", new Vector2D(100, 100), 32, 32,
-            16, 0);
+// Sprite.drawArray(g, font, "a your mom", new Vector2D(100, 100), 32, 32,
+// 16, 0);
 
         player.render(g);
     }

@@ -104,7 +104,7 @@ public class Sprite {
         spriteArray = new BufferedImage[wSprite][hSprite];
 
         for (int x = 0; x < wSprite; x++) {
-            for (int y = 0; y < wSprite; y++) {
+            for (int y = 0; y < hSprite; y++) {
                 spriteArray[x][y] = getSprite(x, y);
             }
         }

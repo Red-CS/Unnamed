@@ -18,6 +18,14 @@ public class GameStateManager {
 
     public static Vector2D map;
 
+    public static final int PLAY = 0;
+
+    public static final int MENU = 1;
+
+    public static final int PAUSE = 2;
+
+    public static final int GAMEOVER = 3;
+
     /**
      * GameStateManager Constructor
      */
@@ -27,6 +35,39 @@ public class GameStateManager {
 
         map = new Vector2D(GamePanel.PANEL_WIDTH, GamePanel.PANEL_HEIGHT);
         Vector2D.setWorldVar(map.x, map.y);
+    }
+
+
+    /**
+     * @param state
+     */
+    public void pop(int state) {
+        states.remove(state);
+    }
+
+
+    public void add(int state) {
+        if (state == PLAY) {
+            states.add(new PlayState(this));
+        }
+        if (state == MENU) {
+            states.add(new MenuState(this));
+        }
+        if (state == PAUSE) {
+            states.add(new PauseState(this));
+        }
+        if (state == GAMEOVER) {
+            states.add(new GameOverState(this));
+        }
+    }
+
+
+    /**
+     * @param state
+     */
+    public void addAndPop(int state) {
+        states.remove(0);
+        add(state);
     }
 
 

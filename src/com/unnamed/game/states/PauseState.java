@@ -1,24 +1,23 @@
 package com.unnamed.game.states;
 
 import java.awt.Graphics2D;
-import com.unnamed.game.graphics.Font;
-import com.unnamed.game.graphics.Sprite;
 import com.unnamed.game.util.KeyHandler;
 import com.unnamed.game.util.MouseHandler;
-import com.unnamed.game.util.Vector2D;
 
 /**
- * @version PlayState Class
+ * @version PauseState Class
  * @author Red Williams (Red-CS)
  * @version 05-30-2021
  */
-public class PlayState extends GameState {
+public class PauseState extends GameState {
 
-    private Font font;
-
-    public PlayState(GameStateManager gsm) {
+    /**
+     * PauseState Constructor
+     * @param gsm
+     */
+    public PauseState(GameStateManager gsm) {
         super(gsm);
-        font = new Font("font/ZeldaFont.png", 16, 16);
+        // TODO Auto-generated constructor stub
     }
 
 
@@ -38,6 +37,7 @@ public class PlayState extends GameState {
      */
     @Override
     public void input(MouseHandler mouse, KeyHandler key) {
+        // TODO Auto-generated method stub
 
     }
 
@@ -47,9 +47,8 @@ public class PlayState extends GameState {
      */
     @Override
     public void render(Graphics2D g) {
+        // TODO Auto-generated method stub
 
-        Sprite.drawArray(g, font, "a your mom", new Vector2D(100, 100), 32, 32,
-            16, 0);
     }
 
 }
